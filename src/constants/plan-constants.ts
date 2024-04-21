@@ -2,21 +2,21 @@ export const planConstants = {
   monthly: [
     {
       id: 1,
-      logo: "/src/assets/images/icon-arcade.svg",
+      logo: "/images/icon-arcade.svg",
       plan: "Arcade",
       price: 9,
       per: "mo",
     },
     {
       id: 2,
-      logo: "/src/assets/images/icon-advanced.svg",
+      logo: "/images/icon-advanced.svg",
       plan: "Advanced",
       price: 12,
       per: "mo",
     },
     {
       id: 3,
-      logo: "/src/assets/images/icon-pro.svg",
+      logo: "/images/icon-pro.svg",
       plan: "Pro",
       price: 15,
       per: "mo",
@@ -25,7 +25,7 @@ export const planConstants = {
   yearly: [
     {
       id: 1,
-      logo: "/src/assets/images/icon-arcade.svg",
+      logo: "/images/icon-arcade.svg",
       plan: "Arcade",
       price: 90,
       per: "yr",
@@ -33,7 +33,7 @@ export const planConstants = {
     },
     {
       id: 2,
-      logo: "/src/assets/images/icon-advanced.svg",
+      logo: "/images/icon-advanced.svg",
       plan: "Advanced",
       price: 120,
       per: "yr",
@@ -41,7 +41,7 @@ export const planConstants = {
     },
     {
       id: 3,
-      logo: "/src/assets/images/icon-pro.svg",
+      logo: "/images/icon-pro.svg",
       plan: "Pro",
       price: 150,
       per: "yr",

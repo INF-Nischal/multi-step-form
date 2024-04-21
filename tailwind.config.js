@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        "sidebar-texture": "url('/src/assets/images/bg-sidebar-desktop.svg')",
+        "sidebar-texture": "url('/images/bg-sidebar-desktop.svg')",
       },
     },
   },
