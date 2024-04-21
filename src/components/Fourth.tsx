@@ -5,11 +5,16 @@ import { planConstants, addonsConstants } from "../constants/plan-constants";
 
 const Fourth = () => {
   const [selectedPlan, setSelectedPlan] = useState<string>("yearly");
-  const [planName, setPlanName] = useState<string>("Arcade");
+  // const [planName, setPlanName] = useState<string>("Arcade");
+  const planName = "Arcade";
   const monthlyPlans = planConstants.monthly;
   const yearlyPlans = planConstants.yearly;
   const monthlyAddons = addonsConstants.monthly;
   const yearlyAddons = addonsConstants.yearly;
+
+  const handlePlanChange = () => {
+    setSelectedPlan(selectedPlan === "monthly" ? "yearly" : "monthly");
+  };
 
   return (
     <div>
@@ -72,6 +77,12 @@ const Fourth = () => {
           <h1>Total</h1>
           <p>$120/mo</p>
         </div>
+        <button
+          className="bg-blue-300 px-6 py-1.5 capitalize mt-5 rounded-lg"
+          onClick={handlePlanChange}
+        >
+          {selectedPlan}
+        </button>
       </div>
     </div>
   );

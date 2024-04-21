@@ -5,9 +5,13 @@ import { addonsConstants } from "../constants/plan-constants";
 import AddonsOption from "./form-components/AddonsOption";
 
 const Third = () => {
-  const [addonsPlan, setAddonsPlan] = useState<string>("yearly");
+  const [addonsPlan, setAddonsPlan] = useState<string>("monthly");
   const monthlyPlans = addonsConstants.monthly;
   const yearlyPlans = addonsConstants.yearly;
+
+  const handleAddonsPlanChange = () => {
+    setAddonsPlan(addonsPlan === "monthly" ? "yearly" : "monthly");
+  };
 
   return (
     <div>
@@ -37,6 +41,12 @@ const Third = () => {
             />
           ))}
       </div>
+      <button
+        className="bg-blue-300 px-6 py-1.5 capitalize mt-5 rounded-lg"
+        onClick={handleAddonsPlanChange}
+      >
+        {addonsPlan}
+      </button>
     </div>
   );
 };

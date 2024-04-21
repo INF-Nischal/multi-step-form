@@ -1,4 +1,3 @@
-import Pagination from "./Pagination";
 import FormTitle from "./form-components/FormTitle";
 import InputField from "./form-components/InputField";
 
