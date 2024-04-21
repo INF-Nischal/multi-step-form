@@ -1,20 +1,43 @@
-import { useState } from "react";
-
+import { useContext } from "react";
 import FormTitle from "./form-components/FormTitle";
 import { planConstants, addonsConstants } from "../constants/plan-constants";
+import { MyContext } from "./MyContext";
 
 const Fourth = () => {
-  const [selectedPlan, setSelectedPlan] = useState<string>("yearly");
-  // const [planName, setPlanName] = useState<string>("Arcade");
-  const planName = "Arcade";
-  const monthlyPlans = planConstants.monthly;
-  const yearlyPlans = planConstants.yearly;
-  const monthlyAddons = addonsConstants.monthly;
-  const yearlyAddons = addonsConstants.yearly;
+  const { plan, planType, addons } = useContext(MyContext);
 
-  const handlePlanChange = () => {
-    setSelectedPlan(selectedPlan === "monthly" ? "yearly" : "monthly");
+  // Ensure TypeScript correctly infers the types for planConstants
+  const typedPlanConstants = planConstants as {
+    monthly: {
+      id: number;
+      logo: string;
+      plan: string;
+      price: number;
+      per: string;
+    }[];
+    yearly: {
+      id: number;
+      logo: string;
+      plan: string;
+      price: number;
+      per: string;
+      free: string;
+    }[];
   };
+
+  const selectedPlan = typedPlanConstants[
+    plan as keyof typeof typedPlanConstants
+  ].find((p) => p.id === planType);
+
+  const selectedAddonsData = addons.map((addonId) =>
+    addonsConstants[plan as keyof typeof addonsConstants].find(
+      (addon) => addon.id === addonId
+    )
+  );
+
+  const totalPrice =
+    (selectedPlan?.price ?? 0) +
+    selectedAddonsData.reduce((acc, addon) => acc + (addon?.price ?? 0), 0);
 
   return (
     <div>
@@ -24,65 +47,32 @@ const Fourth = () => {
       />
       <div>
         <div>
-          {selectedPlan === "monthly" &&
-            monthlyPlans
-              .filter((plan) => plan.plan === planName)
-              .map((plan) => (
-                <div className="flex justify-between items-center">
-                  <div>
-                    <h1>{plan.plan}</h1>
-                    <p className="underline">change</p>
-                  </div>
-                  <p>
-                    {plan.price}/{plan.per}
-                  </p>
-                </div>
-              ))}
-          {selectedPlan === "yearly" &&
-            yearlyPlans
-              .filter((plan) => plan.plan === planName)
-              .map((plan) => (
-                <div className="flex justify-between items-center">
-                  <div>
-                    <h1>{plan.plan}</h1>
-                    <p className="underline">change</p>
-                  </div>
-                  <p>
-                    ${plan.price}/{plan.per}
-                  </p>
-                </div>
-              ))}
+          <div className="flex justify-between items-center">
+            <div>
+              <h1>{selectedPlan?.plan}</h1>
+              <p className="underline">Change</p>
+            </div>
+            <p>
+              {selectedPlan?.price}/{selectedPlan?.per}
+            </p>
+          </div>
         </div>
         <div>
-          {selectedPlan === "monthly" &&
-            monthlyAddons.map((addon) => (
-              <div key={addon.id} className="flex justify-between items-center">
-                <h1>{addon.title}</h1>
-                <p>
-                  ${addon.price}/{addon.per}
-                </p>
-              </div>
-            ))}
-          {selectedPlan === "yearly" &&
-            yearlyAddons.map((addon) => (
-              <div key={addon.id} className="flex justify-between items-center">
-                <h1>{addon.title}</h1>
-                <p>
-                  ${addon.price}/{addon.per}
-                </p>
-              </div>
-            ))}
+          {selectedAddonsData.map((addon) => (
+            <div key={addon?.id} className="flex justify-between items-center">
+              <h1>{addon?.title}</h1>
+              <p>
+                ${addon?.price}/{addon?.per}
+              </p>
+            </div>
+          ))}
         </div>
         <div className="flex justify-between items-center">
           <h1>Total</h1>
-          <p>$120/mo</p>
+          <p>
+            ${totalPrice}/{selectedPlan?.per}
+          </p>
         </div>
-        <button
-          className="bg-blue-300 px-6 py-1.5 capitalize mt-5 rounded-lg"
-          onClick={handlePlanChange}
-        >
-          {selectedPlan}
-        </button>
       </div>
     </div>
   );

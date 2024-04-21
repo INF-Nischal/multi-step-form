@@ -1,4 +1,13 @@
-const SwitchPlan = ({ handlePlanChange }: { handlePlanChange: () => void }) => {
+import { useContext } from "react";
+import { MyContext } from "../MyContext";
+
+const SwitchPlan = () => {
+  const { plan, setPlan } = useContext(MyContext);
+
+  const handlePlanChange = () => {
+    setPlan(plan === "monthly" ? "yearly" : "monthly");
+  };
+
   return (
     <div className="flex justify-center items-center py-4 border-2 rounded-lg">
       <div className="flex items-center gap-4">

@@ -1,30 +1,28 @@
+import { useContext } from "react";
+import { MyContext } from "../MyContext";
+
 interface cardProps {
   id: number;
-  activeId: number;
   logo: string;
   plan: string;
   price: number;
   per: string;
   free?: string;
-  handleActiveId: (id: number) => void;
 }
 
-const Card = ({
-  id,
-  activeId,
-  logo,
-  plan,
-  price,
-  per,
-  free,
-  handleActiveId,
-}: cardProps) => {
+const Card = ({ id, logo, plan, price, per, free }: cardProps) => {
+  const { planType, setPlanType } = useContext(MyContext);
+
+  const handlePlanChange = () => {
+    setPlanType(id);
+  };
+
   return (
     <div
-      className={`border-2 p-3 flex flex-col gap-8 w-[30%] hover:border-blue-300 ${
-        id === activeId ? "border-blue-300" : ""
+      className={`border-2 p-3 flex flex-col gap-8 w-[30%] hover:border-blue-300 hover:cursor-pointer ${
+        id === planType ? "border-blue-300" : ""
       }`}
-      onClick={() => handleActiveId(id)}
+      onClick={handlePlanChange}
     >
       <img src={logo} alt="icon" className="w-[32px] h[32px]" />
       <div>

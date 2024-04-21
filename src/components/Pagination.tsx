@@ -1,37 +1,39 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import { siderbarConstants } from "../constants/sidebar-constants";
-import Button from "./pagination-components/Button";
+import { MyContext } from "./MyContext";
 
-interface PaginationProps {
-  handleNextStep: () => void;
-  handleBackStep: () => void;
-  step: number;
-}
-
-const Pagination = ({
-  handleNextStep,
-  handleBackStep,
-  step,
-}: PaginationProps) => {
+const Pagination = () => {
   const length = siderbarConstants.length;
-  const [page, setPage] = useState<number>(step);
 
-  useEffect(() => {
-    setPage(step);
-  }, [step]);
+  const { step, setStep } = useContext(MyContext);
+
+  const handleStepChange = (step: number) => {
+    setStep(step);
+  };
 
   return (
     <div className="absolute bottom-4 left-0 px-16 w-full flex justify-between">
-      <button
-        className={`${page === 1 ? "opacity-0" : "opacity-100"}`}
-        onClick={handleBackStep}
-      >
-        Go Back
-      </button>
-      {page !== length ? (
-        <Button name={"next step"} handleNextStep={handleNextStep} />
+      {step === 1 ? (
+        <span></span>
       ) : (
-        <Button name={"confirm"} />
+        <button
+          className={`${step === 1 ? "hidden" : "block"}`}
+          onClick={() => handleStepChange(step - 1)}
+        >
+          Go Back
+        </button>
+      )}
+      {step !== length ? (
+        <button
+          className="px-6 py-1.5 rounded-md capitalize bg-blue-200"
+          onClick={() => handleStepChange(step + 1)}
+        >
+          Next
+        </button>
+      ) : (
+        <button className="px-6 py-1.5 rounded-md capitalize bg-blue-200">
+          Confirm
+        </button>
       )}
     </div>
   );
