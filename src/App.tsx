@@ -5,6 +5,7 @@ import First from "./components/First";
 import Second from "./components/Second";
 import Third from "./components/Third";
 import Fourth from "./components/Fourth";
+import Confirmation from "./components/Confirmation";
 import Pagination from "./components/Pagination";
 
 const App = () => {
@@ -14,7 +15,7 @@ const App = () => {
   const [addons, setAddons] = useState<number[]>([]);
 
   return (
-    <main className="h-screen flex justify-center items-center bg-slate-100">
+    <main className="h-screen flex justify-center sm:py-4 sm:items-center bg-slate-100">
       <MyContext.Provider
         value={{
           step,
@@ -27,14 +28,15 @@ const App = () => {
           setAddons,
         }}
       >
-        <div className="h-[600px] p-4 w-[60%] flex gap-4 bg-white rounded-2xl">
+        <div className="sm:h-[600px] w-full flex flex-col sm:flex-row gap-4 sm:w-[60%] bg-white rounded-2xl">
           <Sidebar step={step} />
           <div className="relative h-full w-full px-16 pt-8">
             {step === 1 && <First />}
             {step === 2 && <Second />}
             {step === 3 && <Third />}
             {step === 4 && <Fourth />}
-            <Pagination />
+            {step === 5 && <Confirmation />}
+            {step !== 5 && <Pagination />}
           </div>
         </div>
       </MyContext.Provider>

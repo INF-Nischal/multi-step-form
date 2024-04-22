@@ -19,18 +19,18 @@ const Card = ({ id, logo, plan, price, per, free }: cardProps) => {
 
   return (
     <div
-      className={`border-2 p-3 flex flex-col gap-8 w-[30%] hover:border-blue-300 hover:cursor-pointer ${
+      className={`border-2 p-2 flex flex-col gap-8 w-[30%] rounded-lg hover:border-blue-300 hover:cursor-pointer ${
         id === planType ? "border-blue-300" : ""
       }`}
       onClick={handlePlanChange}
     >
       <img src={logo} alt="icon" className="w-[32px] h[32px]" />
-      <div>
+      <div className="flex flex-col gap-1">
         <h1 className="font-bold">{plan}</h1>
         <h2>
           ${price}/{per}
         </h2>
-        {free && <p>{free}</p>}
+        <p>{free && free}</p>
       </div>
     </div>
   );

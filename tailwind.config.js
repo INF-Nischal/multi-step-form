@@ -5,6 +5,7 @@ export default {
     extend: {
       backgroundImage: {
         "sidebar-texture": "url('/images/bg-sidebar-desktop.svg')",
+        "sidebar-texture-mobile": "url('/images/bg-sidebar-mobile.svg')",
       },
     },
   },

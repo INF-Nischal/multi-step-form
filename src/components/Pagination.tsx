@@ -17,7 +17,7 @@ const Pagination = () => {
         <span></span>
       ) : (
         <button
-          className={`${step === 1 ? "hidden" : "block"}`}
+          className={`${step === 1 ? "hidden" : "block"} font-bold`}
           onClick={() => handleStepChange(step - 1)}
         >
           Go Back
@@ -31,7 +31,10 @@ const Pagination = () => {
           Next
         </button>
       ) : (
-        <button className="px-6 py-1.5 rounded-md capitalize bg-blue-200">
+        <button
+          className="px-6 py-1.5 rounded-md capitalize bg-blue-200"
+          onClick={() => handleStepChange(step + 1)}
+        >
           Confirm
         </button>
       )}

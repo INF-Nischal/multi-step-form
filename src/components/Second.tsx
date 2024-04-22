@@ -17,7 +17,7 @@ const Second = () => {
           title="Select you plan"
           description="You have the option of montly or yearly billing"
         />
-        <div className="flex justify-between my-4">
+        <div className="flex justify-between my-6">
           {plan === "monthly" &&
             monthlyPlans.map((plan) => (
               <Card
