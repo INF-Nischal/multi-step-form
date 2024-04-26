@@ -13,19 +13,25 @@ const Sidebar = ({ step }: SidebarProps) => {
   }, [step]);
 
   return (
-    <div className="sm:bg-sidebar-texture bg-sidebar-texture-mobile bg-cover h-[240px] sm:h-full sm:w-[404px] flex justify-center sm:justify-start sm:flex-col gap-4 p-8">
+    <div className="lg:bg-sidebar-texture bg-sidebar-texture-mobile bg-cover h-[240px] lg:h-full lg:w-[404px] flex justify-center lg:justify-start lg:flex-col lg:gap-8 gap-4 p-8">
       {siderbarConstants.map((item) => (
-        <div key={item.id} className="flex sm:gap-2 h-[32px] sm:h-[48px]">
+        <div key={item.id} className="flex lg:gap-4 h-[32px] lg:items-center">
           <span
-            className={`h-full border-2 rounded-full w-[32px] sm:w-[48px] text-white flex justify-center items-center font-bold ${
-              activeStep === item.id ? "bg-blue-400 border-none" : ""
+            className={`h-full border-2 rounded-full w-[32px] lg:w-[32px] text-neutral-white flex justify-center items-center font-bold ${
+              activeStep === item.id
+                ? "bg-primary-light-blue border-none text-black"
+                : ""
             }`}
           >
             {item.id}
           </span>
-          <div className="hidden sm:block">
-            <h3 className="text-white opacity-70 font-bold">{item.title}</h3>
-            <p className="uppercase text-white">{item.description}</p>
+          <div className="hidden lg:block">
+            <h3 className="text-neutral-light-gray uppercase text-[12px]">
+              {item.title}
+            </h3>
+            <p className="text-white uppercase text-[12px] font-bold tracking-wider">
+              {item.description}
+            </p>
           </div>
         </div>
       ))}

@@ -1,13 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { MyContext } from "../MyContext";
 
 const SwitchPlan = () => {
   const { plan, setPlan } = useContext(MyContext);
-  const [isActive, setIsActive] = useState<boolean>(false);
 
   const handlePlanChange = () => {
     setPlan(plan === "monthly" ? "yearly" : "monthly");
-    setIsActive(!isActive);
   };
 
   return (
@@ -18,12 +16,12 @@ const SwitchPlan = () => {
         </p>
 
         <div
-          className={`bg-gray-800 w-[32px] h-[18px] rounded-xl py-[2.5px] px-[4px] flex ${
-            isActive ? "justify-end" : "justify-start"
-          } `}
+          className={`relative bg-gray-800 w-[36px] h-[18px] rounded-xl py-[2.5px] px-[4px] flex `}
         >
           <div
-            className="h-[12px] w-[12px] bg-white rounded-full hover:cursor-pointer shadow-black shadow-lg"
+            className={`absolute h-[12px] w-[12px] bg-white rounded-full hover:cursor-pointer transition-all ease-in-out shadow-black shadow-lg ${
+              plan === "yearly" ? "translate-x-4" : "translate-x-0"
+            }`}
             onClick={handlePlanChange}
           ></div>
         </div>

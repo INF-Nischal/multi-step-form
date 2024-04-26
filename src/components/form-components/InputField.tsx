@@ -4,9 +4,15 @@ interface InputFieldProps {
   label: string;
   inputType: string;
   placeholder: string;
+  pattern: string;
 }
 
-const InputField = ({ label, inputType, placeholder }: InputFieldProps) => {
+const InputField = ({
+  label,
+  inputType,
+  placeholder,
+  pattern,
+}: InputFieldProps) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
 
@@ -21,9 +27,12 @@ const InputField = ({ label, inputType, placeholder }: InputFieldProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-1">
       <div className="flex justify-between items-center">
-        <label htmlFor={label} className="capitalize">
+        <label
+          htmlFor={label}
+          className="capitalize font-medium text-sm text-primary-marine-blue"
+        >
           {label}
         </label>
         <p className="text-red-500 text-sm">{error}</p>
@@ -31,9 +40,10 @@ const InputField = ({ label, inputType, placeholder }: InputFieldProps) => {
       <input
         type={inputType}
         id={label}
-        className="outline-none border-2 rounded-md px-3 py-1.5"
+        className="outline-none border-2 rounded-md px-3 py-2 text-sm"
         placeholder={placeholder}
         value={value}
+        pattern={pattern}
         onChange={handleChange}
       />
     </div>

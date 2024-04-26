@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.w-calc-width {
+    width: calc(100% - 2rem);
+}

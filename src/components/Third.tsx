@@ -16,7 +16,7 @@ const Third = () => {
         title="Pick add-ons"
         description="Add-ons help enhance you gaming experience."
       />
-      <div className="flex flex-col gap-4 mt-4">
+      <div className="flex flex-col gap-4">
         {plan === "monthly" &&
           monthlyPlans.map((item) => (
             <AddonsOption

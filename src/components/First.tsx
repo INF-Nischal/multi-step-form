@@ -4,26 +4,29 @@ import InputField from "./form-components/InputField";
 const First = () => {
   return (
     <div className="flex flex-col justify-between">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col">
         <FormTitle
-          title="Personal Information"
+          title="Personal info"
           description="Please Provide you name, email address, phone number"
         />
-        <form className="flex flex-col gap-2">
+        <form className="flex flex-col gap-4">
           <InputField
             label="name"
             inputType="text"
-            placeholder="E.g. Jhon Doe"
+            placeholder="e.g. Stephen King"
+            pattern="^[A-Za-z]+(?:[ -][A-Za-z]+)*$"
           />
           <InputField
-            label="email"
+            label="email address"
             inputType="email"
-            placeholder="E.g. doe@gmail.com"
+            placeholder="e.g. stephenking@lorem.com"
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
           />
           <InputField
-            label="phone"
+            label="phone number"
             inputType="tel"
-            placeholder="E.g. 9845137036"
+            placeholder="e.g. +1 234 567 890"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           />
         </form>
       </div>

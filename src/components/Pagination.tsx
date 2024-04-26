@@ -12,7 +12,7 @@ const Pagination = () => {
   };
 
   return (
-    <div className="absolute bottom-4 left-0 px-16 w-full flex justify-between">
+    <div className="absolute bottom-6 sm:bottom-4 left-0 px-4 sm:px-16 w-full flex justify-between">
       {step === 1 ? (
         <span></span>
       ) : (
@@ -25,14 +25,14 @@ const Pagination = () => {
       )}
       {step !== length ? (
         <button
-          className="px-6 py-1.5 rounded-md capitalize bg-blue-200"
+          className="px-6 py-3 rounded-md capitalize bg-primary-marine-blue text-neutral-white text-sm"
           onClick={() => handleStepChange(step + 1)}
         >
-          Next
+          Next Step
         </button>
       ) : (
         <button
-          className="px-6 py-1.5 rounded-md capitalize bg-blue-200"
+          className="px-6 py-3 rounded-md capitalize bg-primary-purplish-blue text-neutral-white text-sm"
           onClick={() => handleStepChange(step + 1)}
         >
           Confirm
